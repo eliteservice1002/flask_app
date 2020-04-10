@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Search page</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="static/css/bootstrap.min.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="static/css/style.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="static/css/flag-icon.css" media="screen">
+</head>
+<body>
+	<div class="header">
+	  <a href="/" class="logo">CompanyLogo</a>
+	  <div class="header-right">
+        <span class="flag-icon flag-icon-gb"></span>    
+        <label>English</label>
+	    <label>David Smith</label> 
+        <a class="header-right" href="/">Log out</a>
+	  </div>
+	</div>
+
+	<div class="container" style="margin-top: 15%;">
+		<p style="margin-left: 20%;">Company name or number</p>
+			
+		<div class="row searchbox">
+
+			<form class="form-inline" style="width: 500px;" action="/search" method="post">
+
+				<div class="input-group" style="width: 100%;">
+				    <input type="text" name="company_name" class="form-control" placeholder="Input company name or number before">
+				    <div class="input-group-append">				      
+				      <button id="search" type="submit">Search</button>
+				    </div>
+				</div>
+
+				<input type="hidden" name="username" value="{{ request.form.username }}">
+				<input type="hidden" name="password" value="{{ request.form.password }}">
+
+			</form>
+		</div>
+	</div>
+
+	<div class="footer">
+		<div class="part">
+	        <div class="col-2">
+	        	<p class="help">Help &amp; Support</p>
+	            <p class="help">Access a comprehensive</p>
+	            <p class="help">help section ></p>
+	            
+	        </div>
+	        <div class="col-2">
+	            <p>Basic Search</p>
+	          
+	            <button class="btn btn-primary form-control">
+	                <p>In Progress</p>
+	            </button>
+	        </div>
+	        <div class="col-2" style="border-left: 1px solid #eee">
+	            <p>Intermediate Search</p>
+	            
+	            <button class="btn btn-secondary form-control">
+	            	Not Started
+	            </button>
+	        </div>
+	        <div class="col-2" style="border-left: 1px solid #eee">
+	            <p>Advanced Search</p>
+	            
+	            <button class="btn btn-secondary form-control">Not started</button>
+	        </div>
+	        <div class="col-2" style="border-left: 1px solid #eee">
+	            <p>Report</p>
+
+	            <button class="btn btn-secondary form-control">
+	            	Not Started
+	            </button>
+	        </div>
+    	</div>
+
+		<p>Legal Privacy Notice Cookie Policy Accessibility 2020 AMP Credit Technologies</p>
+    </div> 
+
+</body>
+</html>

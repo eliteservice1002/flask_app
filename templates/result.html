@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Search Result Page</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="static/css/bootstrap.min.css" media="screen">
+	<link rel="stylesheet" type="text/css" href="static/css/style.css" media="screen">
+	<link rel="stylesheet" type="text/css" href="static/css/flag-icon.css" media="screen">
+	<link rel="stylesheet" type="text/css" href="static/css/datatables.min.css" media="screen">
+	<!-- <link rel="stylesheet" type="text/css" href="static/css/fontawesome.min.css" media="screen"> -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+	<!-- <script type="text/javascript" src="static/js/bootstrap.min.js"></script> -->
+	<script type="text/javascript" src="static/js/jquery.min.js"></script>
+	<script type="text/javascript" src="static/js/datatables.min.js"></script>
+	
+</head>
+<body>
+	<div class="header">
+		<a href="/" class="logo">CompanyLogo</a>
+		<div class="header-right">
+			<span class="flag-icon flag-icon-gb"></span>
+			<label>English</label>
+			<label>David Smith</label>
+			<a class="header-right" href="/">Log out</a>
+		</div>
+	</div>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-4" style="margin-top: 15%;">
+				<p style="margin-left: 12%;">Company name or number</p>
+
+				<div class="row searchbox">
+
+					<form class="form-inline" style="width: 500px;" action="/search" method="post">
+
+						<div class="input-group" style="width: 100%;">
+							<input type="text" name="company_name" class="form-control" placeholder="Input company name or number before" value="{{ company_name }}">
+								<div class="input-group-append">
+									<button id="search" type="submit">Search</button>
+								</div>
+						</div>
+
+					</form>
+				</div>
+			</div>
+
+			<div class="col-8" style="margin-top: 0.5%;">
+				<table id="resultTable" class="table table-bordered table-sm" cellspacing="0">
+					<thead>
+						<tr>
+							<th class="th-sm">Company Registration</th>
+							<th class="th-sm">Company Name</th>
+							<th class="th-sm">HK Company</th>
+							<th class="th-sm">Name Status</th>
+							<th class="th-sm">Company Active Status</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for item in result %}
+						<tr>
+							<td>{{ item[0] }}</td>
+							<td><span class="company_name" data-name="{{ item[1] }}">{{ item[1] }}</span></td>
+							<td>{{ item[2] }}{% if item[2] == 'Yes' %}<i class="fas fa-check ok"></i>{% else %}<i class="fas fa-exclamation cancel"></i>{% endif %}</td>
+							<td>{{ item[3] }}</td>
+							<td>{{ item[4] }}</td>
+						</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+
+		</div>
+
+		<form id="details" action="/details" method="post">
+			<input type="hidden" name="company_name" id="company_name">
+		</form>
+
+	</div>
+
+	<div class="footer">
+		<div class="part">
+			<div class="col-2">
+				<p class="help">Help &amp; Support</p>
+				<p class="help">Access a comprehensive</p>
+				<p class="help">help section ></p>
+
+			</div>
+			<div class="col-2">
+				<p>Basic Search</p>
+
+				<button class="btn btn-primary form-control">
+					<p>In Progress</p>
+				</button>
+			</div>
+			<div class="col-2" style="border-left: 1px solid #eee">
+				<p>Intermediate Search</p>
+
+				<button class="btn btn-secondary form-control">
+					Not Started
+				</button>
+			</div>
+			<div class="col-2" style="border-left: 1px solid #eee">
+				<p>Advanced Search</p>
+
+				<button class="btn btn-secondary form-control">Not started</button>
+			</div>
+			<div class="col-2" style="border-left: 1px solid #eee">
+				<p>Report</p>
+
+				<button class="btn btn-secondary form-control">
+					Not Started
+				</button>
+			</div>
+		</div>
+
+		<p>Legal Privacy Notice Cookie Policy Accessibility 2020 AMP Credit Technologies</p>
+	</div>
+
+
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$('#resultTable').DataTable({
+				'pagingType' : 'full_numbers',
+				'ordering' : false
+			});
+
+			$('.dataTables_length').addClass('bs-select');
+		});
+
+		$('.company_name').on('click', function(){
+			var selected_name = $(this).data('name');
+			$("#company_name").val(selected_name);
+			$("#details").submit();
+		});
+	</script>
+
+	</body>
+
+</html>
