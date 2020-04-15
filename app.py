@@ -36,14 +36,20 @@ def search():
 		
 			return render_template('result.html', result=result, company_name=request.form['company_name'])
 
+
 @app.route('/details', methods=['GET', 'POST'])
 def details():
 	error = None
 	if request.method == "POST":
-		company_name = request.form['company_name']
-		
-		print(company_name)
-		return render_template('details.html', result = company_name)
+		if request.form['company_name'] != "":
+			
+			cr_no = request.form['company_name']
+			search_word = request.form['search_word']
+			
+			print(cr_no)
+			result = getDetail(cr_no)
+
+			return render_template('details.html', result = result, search_word=search_word)
 
 if __name__ == '__main__':
 	app.run(debug=True)

@@ -7,13 +7,18 @@
 	<link rel="stylesheet" type="text/css" href="static/css/bootstrap.min.css" media="screen">
 	<link rel="stylesheet" type="text/css" href="static/css/style.css" media="screen">
 	<link rel="stylesheet" type="text/css" href="static/css/flag-icon.css" media="screen">
-	<link rel="stylesheet" type="text/css" href="static/css/datatables.min.css" media="screen">
+	<!-- <link rel="stylesheet" type="text/css" href="static/css/datatables.min.css" media="screen"> -->
+	<!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css"> -->
+
+	<link async rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">
 	<!-- <link rel="stylesheet" type="text/css" href="static/css/fontawesome.min.css" media="screen"> -->
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
 	<!-- <script type="text/javascript" src="static/js/bootstrap.min.js"></script> -->
 	<script type="text/javascript" src="static/js/jquery.min.js"></script>
-	<script type="text/javascript" src="static/js/datatables.min.js"></script>
+	<!-- <script type="text/javascript" src="static/js/datatables.min.js"></script> -->
+	<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+	<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
 	
 </head>
 <body>
@@ -62,7 +67,7 @@
 						{% for item in result %}
 						<tr>
 							<td>{{ item[0] }}</td>
-							<td><span class="company_name" data-name="{{ item[1] }}">{{ item[1] }}</span></td>
+							<td><span class="company_name" data-name="{{ item[0] }}">{{ item[1] }}</span></td>
 							<td>{{ item[2] }}{% if item[2] == 'Yes' %}<i class="fas fa-check ok"></i>{% else %}<i class="fas fa-exclamation cancel"></i>{% endif %}</td>
 							<td>{{ item[3] }}</td>
 							<td>{{ item[4] }}</td>
@@ -75,6 +80,7 @@
 		</div>
 
 		<form id="details" action="/details" method="post">
+			<input type="hidden" name="search_word" value="{{ company_name }}">
 			<input type="hidden" name="company_name" id="company_name">
 		</form>
 
@@ -91,28 +97,22 @@
 			<div class="col-2">
 				<p>Basic Search</p>
 
-				<button class="btn btn-primary form-control">
-					<p>In Progress</p>
-				</button>
+				<input id="btn_basic" type="button" name="" class="btn btn-primary form-control" value="In Progress">
 			</div>
 			<div class="col-2" style="border-left: 1px solid #eee">
 				<p>Intermediate Search</p>
 
-				<button class="btn btn-secondary form-control">
-					Not Started
-				</button>
+				<input id="btn_intermediate" type="button" name="" class="btn btn-secondary form-control" value="Not Started">
 			</div>
 			<div class="col-2" style="border-left: 1px solid #eee">
 				<p>Advanced Search</p>
 
-				<button class="btn btn-secondary form-control">Not started</button>
+				<input id="btn_advanced" type="button" name="" class="btn btn-secondary form-control" value="Not Started">
 			</div>
 			<div class="col-2" style="border-left: 1px solid #eee">
 				<p>Report</p>
 
-				<button class="btn btn-secondary form-control">
-					Not Started
-				</button>
+				<input id="btn_report" type="button" name="" class="btn btn-secondary form-control" value="Not Started">
 			</div>
 		</div>
 
@@ -121,10 +121,13 @@
 
 
 	<script type="text/javascript">
+		let height = window.innerHeight - 450;
+
 		$(document).ready(function(){
 			$('#resultTable').DataTable({
-				'pagingType' : 'full_numbers',
-				'ordering' : false
+				'paging' : true,
+				'autoWidth' : true,
+				'scrollY' : height + "px"
 			});
 
 			$('.dataTables_length').addClass('bs-select');

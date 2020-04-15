@@ -98,3 +98,63 @@ def getData(search_key):
 
 	return result
 
+def getDetail(cr_no):
+
+	url = "javascript:selectCompany('"+cr_no+"', '');"
+	result = []
+
+	selected_company = driver.find_element_by_xpath('//a[@href="'+url+'"]')
+	selected_company.click()
+
+	print(driver.current_url)
+	
+	table1 = driver.find_elements_by_tag_name('table')[3]
+	table2 = driver.find_elements_by_tag_name('table')[4]
+	aa = table1.text
+	bb = aa.split('\n')
+	cc = table2.text
+	dd = cc.split('\n')
+
+	CR_no = bb[0].split(": ")[1]
+	company_name = bb[1].split(": ")[1]
+	company_type = bb[2].split(": ")[1]
+	date_of_incorporation = bb[3].split(": ")[1]
+	active_status = bb[4].split(": ")[1]
+	remarks = bb[5].split("'")[0].split(": ")[1]
+	windingup_mode = bb[6].split("'")[0].split(": ")[1]
+	register_of_charges = bb[9].split(": ")[1]
+	important_note = bb[10].split(": ")[1]
+
+	result_basic = {"CR_no":CR_no, "company_name":company_name, "company_type":company_type, "date_of_incorporation":date_of_incorporation, "active_status":active_status, "remarks":remarks, "windingup_mode":windingup_mode, "register_of_charges":register_of_charges, "important_note":important_note}
+
+
+	def listToString(s):
+		str1 = " "
+		return (str1.join(s))
+
+	history = driver.find_elements_by_tag_name('table')[4].text
+
+	row = history.split("\n")
+	result_history = []
+
+	for i in range(1, len(row)):
+
+		effective_date = row[i].split(' ')[0]
+		used_name = listToString(row[i].split(' ')[1:])
+
+		dict_history = {"effective_date":effective_date, "used_name":used_name}
+		result_history.append(dict_history)
+
+	btnGo = driver.find_elements_by_name('Button')[0]
+	btnGo.click()
+
+	btnProceed = driver.find_elements_by_tag_name('input')[5]
+	btnProceed.click()
+
+	filing_year = driver.find_elements_by_name('filing_year')[0]
+	filing_year.click()
+	driver.find_elements_by_tag_name('option')[9].click()
+	driver.find_elements_by_tag_name('input')[5].click()
+
+	driver.find_elements_by_tag_name('input')[27].click()
+

@@ -4,23 +4,7 @@ body {
   
   height: 100vh;
 }
-/*#login .container #login-row #login-column #login-box {
-  margin-top: 60px;
-  max-width: 600px;
-  height: 350px;
-  border: 1px solid #9C9C9C;
-  background-color: #EAEAEA;
-}*/
-/*#login .container #login-row #login-column #login-box #login-form {
-  padding: 20px;
-}
-#login .container #login-row #login-column #login-box #login-form #register-link {
-  margin-top: -85px;
-}
 
-#login{
-  padding-top: 60px;
-}*/
 .btn{
   width: 80%;
 }
@@ -114,6 +98,7 @@ label{
 .container {
     width: 100%;
     max-width: 100%;
+    margin: 1rem 0;
 }
 .part {
    background: #333;
@@ -207,4 +192,40 @@ label{
 .col-2{
   max-width: 100% !important;
   flex: unset !important;
+}
+
+#confirm{
+  display: none;
+}
+
+.title{
+  color: black!important;
+  margin-left: 10px!important;
+  height: 20px;
+  margin-bottom: 1rem;
+}
+#history_wrapper{
+  margin-left: 32px;
+}
+#filings_wrapper{
+  margin-left: 83px;
+}
+.indicator{
+  background: #c3baba;
+  border: 3px solid #c3baba;
+  border-radius: 5px;
+  /*width: 30%;*/
+  height: 80px;
+  padding: 1rem;
+  text-align: center;
+  margin: 1rem;
+}
+.custom{
+  font-size: 40px;
+}
+.dataTables_length{
+  display: none;
+}
+.content_table{
+  margin: 2rem 0 2rem 0;
 }
