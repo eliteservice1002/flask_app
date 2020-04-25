@@ -23,12 +23,12 @@
 </head>
 <body>
 	<div class="header">
-		<a href="/" class="logo">CompanyLogo</a>
+		
 		<div class="header-right">
 			<span class="flag-icon flag-icon-gb"></span>
 			<label>English</label>
 			<label>David Smith</label>
-			<a class="header-right" href="/">Log out</a>
+			<a class="header-right" href="/logout">Log out</a>
 		</div>
 	</div>
 
@@ -116,7 +116,7 @@
 			</div>
 		</div>
 
-		<p>Legal Privacy Notice Cookie Policy Accessibility 2020 AMP Credit Technologies</p>
+		<p>Legal Privacy Notice Cookie Policy Accessibility</p>
 	</div>
 
 
@@ -134,8 +134,8 @@
 		});
 
 		$('.company_name').on('click', function(){
-			var selected_name = $(this).data('name');
-			$("#company_name").val(selected_name);
+			var selected_no= $(this).data('name');
+			$("#company_name").val(selected_no);
 			$("#details").submit();
 		});
 	</script>

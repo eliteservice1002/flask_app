@@ -9,24 +9,28 @@
 </head>
 <body>
 	<div class="header">
-	  <a href="/" class="logo">CompanyLogo</a>
-	  <div class="header-right">
-        <span class="flag-icon flag-icon-gb"></span>    
-        <label>English</label>
-	    <label>David Smith</label> 
-        <a class="header-right" href="/">Log out</a>
-	  </div>
+		
+		<div class="header-right">
+			<span class="flag-icon flag-icon-gb"></span>
+			<label>English</label>
+			<label>David Smith</label>
+			<a class="header-right" href="/logout">Log out</a>
+		</div>
 	</div>
+	
+	{% if error %}
+    	<p class="error"><strong>{{ error }}</strong> 
+    {% endif %}
 
 	<div class="container" style="margin-top: 15%;">
-		<p style="margin-left: 20%;">Company name or number</p>
+		<p style="margin-left: 15%;">Company name or number</p>
 			
 		<div class="row searchbox">
 
 			<form class="form-inline" style="width: 500px;" action="/search" method="post">
 
 				<div class="input-group" style="width: 100%;">
-				    <input type="text" name="company_name" class="form-control" placeholder="Input company name or number before">
+				    <input type="text" name="company_name" class="form-control" placeholder="Input company name or number here.">
 				    <div class="input-group-append">				      
 				      <button id="search" type="submit">Search</button>
 				    </div>
@@ -75,7 +79,7 @@
 	        </div>
     	</div>
 
-		<p>Legal Privacy Notice Cookie Policy Accessibility 2020 AMP Credit Technologies</p>
+		<p>Legal Privacy Notice Cookie Policy Accessibility</p>
     </div> 
 
 </body>

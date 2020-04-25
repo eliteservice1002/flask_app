@@ -73,6 +73,7 @@ body {
    text-align: right;
    padding-right: 50px;
    padding-top: 8px; 
+   z-index: 10;
 }
 label{
   color: white;
@@ -141,17 +142,23 @@ label{
   margin-left: 20px;
 }
 #confirm{
-  position: absolute;
+  padding: 0;
+  left: 0;
+  top: 0;
+  display: none;
+  position: fixed;
   width: 100%;
   height: 100%;
   background: rgba(0,0,0,0.6);
+  z-index: 5;
 }
 #modal{
-  position: absolute;
+  /*position: absolute;*/
   width: 100%;
   color: white;
-  top: calc(50%-50px);
+  /*top: calc(100%-50px);*/
   text-align: center;
+  margin-top: 15%;
 }
 .yes{
   color: white;
@@ -167,9 +174,10 @@ label{
   padding: 0.375rem 0.75rem;
   font-size: 1rem;
   line-height: 1.5;
-  border-radius: 0.25rem;
+  border-radius: 0.5rem;
   transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-
+  width: 5%;
+  height: 40px;
 }
 
 .no{
@@ -186,16 +194,14 @@ label{
   padding: 0.375rem 0.75rem;
   font-size: 1rem;
   line-height: 1.5;
-  border-radius: 0.25rem;
+  border-radius: 0.5rem;
   transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  width: 5%;
+  height: 40px;
 }
 .col-2{
   max-width: 100% !important;
   flex: unset !important;
-}
-
-#confirm{
-  display: none;
 }
 
 .title{
@@ -208,24 +214,124 @@ label{
   margin-left: 32px;
 }
 #filings_wrapper{
-  margin-left: 83px;
+  margin-left: 30px;
 }
 .indicator{
   background: #c3baba;
-  border: 3px solid #c3baba;
+  /*border: 3px solid #c3baba;*/
   border-radius: 5px;
   /*width: 30%;*/
-  height: 80px;
-  padding: 1rem;
+  /*height: 60px;*/
+  font-size: 15px;
+  /*padding: 1rem;*/
   text-align: center;
-  margin: 1rem;
+  margin: 5px;
+  padding: 5px;
+  /*display: flex;*/
 }
 .custom{
-  font-size: 40px;
+  font-size: 20px;
+  margin: 5px;
 }
-.dataTables_length{
+/*.dataTables_length{
+  display: none;
+}*/
+.content_table{
+  margin-right: 10px;
+  overflow: auto;
+  width: 100%;
+}
+#content{
+  padding-bottom: 180px;
+  overflow: auto; 
+}
+.btn_back{
+  background: white;
+  border: 1px solid black; 
+  width: 50px; 
+  height: 30px;
+}
+.btn_next{
+  background: #07154a; 
+  border: 1px solid black; 
+  width: 50px; 
+  height: 30px; 
+  color: white;
+}
+#intermediate_result{
   display: none;
 }
-.content_table{
-  margin: 2rem 0 2rem 0;
+
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    z-index: 1000;
+}
+#loader {
+    display: block;
+    position: relative;
+    left: 50%;
+    top: 50%;
+    width: 150px;
+    height: 150px;
+    margin: -75px 0 0 -75px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    border-top-color: #9370DB;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+}
+#loader:before {
+    content: "";
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    right: 5px;
+    bottom: 5px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    border-top-color: #BA55D3;
+    -webkit-animation: spin 3s linear infinite;
+    animation: spin 3s linear infinite;
+}
+#loader:after {
+    content: "";
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    right: 15px;
+    bottom: 15px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    border-top-color: #FF00FF;
+    -webkit-animation: spin 1.5s linear infinite;
+    animation: spin 1.5s linear infinite;
+}
+@-webkit-keyframes spin {
+    0%   {
+        -webkit-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+@keyframes spin {
+    0%   {
+        -webkit-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
 }

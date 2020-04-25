@@ -18,20 +18,23 @@
 	<!-- <script type="text/javascript" src="static/js/datatables.min.js"></script> -->
 	<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
 	<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
-
-
+	<script type="text/javascript" src="static/js/custom.js"></script>
 </head>
 <body>
+	<div id="preloader">
+	  <div id="loader"></div>
+	</div>
+
 	<div class="header">
-		<a href="/" class="logo">CompanyLogo</a>
+		
 		<div class="header-right">
 			<span class="flag-icon flag-icon-gb"></span>
 			<label>English</label>
 			<label>David Smith</label>
-			<a class="header-right" href="/">Log out</a>
+			<a class="header-right" href="/logout">Log out</a>
 		</div>
 	</div>
-
+	
 
 	<div id="confirm">
 		<div id="modal">
@@ -43,313 +46,205 @@
 
 	<div id="content" class="container">
 		<div class="row justify-content-center">
-			<div class="col-6">
-				<div class="content_table row">
+			<div class="col-12 col-xl-7">
+				<div class="row justify-content-between">
+					<div class="col-12">
+						<div class="content_table row">
 					
-					<label class="title"><strong>Company basic information</strong></label>
-					<table id="basicInfo" class="table table-bordered table-sm" cellspacing="0">
-						<thead>
-							<tr>
-								<th class="th-sm">Type</th>
-								<th class="th-sm">Value</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td style="width: 40%;">CR No:</td>
-								<td>1196976</td>
-							</tr>
-							<tr>
-								<td style="width: 40%;">CR No:</td>
-								<td>1196976</td>
-							</tr>
-							<tr>
-								<td style="width: 40%;">CR No:</td>
-								<td>1196976</td>
-							</tr>
-							<tr>
-								<td style="width: 40%;">CR No:</td>
-								<td>1196976</td>
-							</tr>
-							<tr>
-								<td style="width: 40%;">CR No:</td>
-								<td>1196976</td>
-							</tr>
-							<tr>
-								<td style="width: 40%;">CR No:</td>
-								<td>1196976</td>
-							</tr>
-							<tr>
-								<td style="width: 40%;">CR No:</td>
-								<td>1196976</td>
-							</tr>
-							<tr>
-								<td style="width: 40%;">CR No:</td>
-								<td>1196976</td>
-							</tr><tr>
-								<td style="width: 40%;">CR No:</td>
-								<td>1196976</td>
-							</tr><tr>
-								<td style="width: 40%;">CR No:</td>
-								<td>1196976</td>
-							</tr><tr>
-								<td style="width: 40%;">CR No:</td>
-								<td>1196976</td>
-							</tr>
-						</tbody>
+							<label class="title"><strong>Company basic information</strong></label>
+							<table id="basicInfo" class="table table-bordered table-sm">
+								<thead>
+									<tr>
+										<th class="th-sm">Type</th>
+										<th class="th-sm">Value</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>CR No: </td>
+										<td>{{ result_basic['CR_no']}}</td>
+									</tr>
+									<tr>
+										<td>Company Name: </td>
+										<td>{{result_basic['company_name']}}</td>
+									</tr>
+									<tr>
+										<td>Company Type: </td>
+										<td>{{result_basic['company_type']}}</td>
+									</tr>
+									<tr>
+										<td>Date of Incorporation:</td>
+										<td>{{result_basic['date_of_incorporation']}}</td>
+									</tr>
+									
+								</tbody>
 
-					</table>
+							</table>
 
+						</div>
+					</div>
+
+					<div class="col-12">
+						<div class="content_table row">
+							<label class="title"><strong>Company name history</strong></label>
+							<table id="history" class="table table-bordered table-sm">
+								<thead>
+									<tr>
+										<th class="th-sm">Effective Date</th>
+										<th class="th-sm">Name Used</th>
+									</tr>
+								</thead>
+								<tbody>
+									{% for item in result_history %}
+									<tr>
+										<td>{{ item['effective_date'] }}</td>
+										<td>{{ item['used_name'] }}</td>
+									</tr>
+									{% endfor%}
+								</tbody>
+							</table>
+						</div>	
+					</div>
 				</div>
 
-				<div class="content_table row">
-					<label class="title"><strong>Company name history</strong></label>
-					<table id="history" class="table table-bordered table-sm" cellspacing="0">
-						<thead>
-							<tr>
-								<th class="th-sm">Effective Date</th>
-								<th class="th-sm">Name Used</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td style="width: 40%;">sdfasdf</td>
-								<td>sdfasdf</td>
-							</tr>
-							<tr>
-								<td style="width: 40%;">sdfasdf</td>
-								<td>sdfasdf</td>
-							</tr>
-							<tr>
-								<td style="width: 40%;">sdfasdf</td>
-								<td>sdfasdf</td>
-							</tr>
-							<tr>
-								<td style="width: 40%;">sdfasdf</td>
-								<td>sdfasdf</td>
-							</tr>
-							<tr>
-								<td style="width: 40%;">sdfasdf</td>
-								<td>sdfasdf</td>
-							</tr>
-							<tr>
-								<td style="width: 40%;">sdfasdf</td>
-								<td>sdfasdf</td>
-							</tr><tr>
-								<td style="width: 40%;">sdfasdf</td>
-								<td>sdfasdf</td>
-							</tr>
-							<tr>
-								<td style="width: 40%;">sdfasdf</td>
-								<td>sdfasdf</td>
-							</tr>
-							<tr>
-								<td style="width: 40%;">sdfasdf</td>
-								<td>sdfasdf</td>
-							</tr><tr>
-								<td style="width: 40%;">sdfasdf</td>
-								<td>sdfasdf</td>
-							</tr>
-							<tr>
-								<td style="width: 40%;">sdfasdf</td>
-								<td>sdfasdf</td>
-							</tr>
-							<tr>
-								<td style="width: 40%;">sdfasdf</td>
-								<td>sdfasdf</td>
-							</tr><tr>
-								<td style="width: 40%;">sdfasdf</td>
-								<td>sdfasdf</td>
-							</tr>
-							<tr>
-								<td style="width: 40%;">sdfasdf</td>
-								<td>sdfasdf</td>
-							</tr>
-							<tr>
-								<td style="width: 40%;">sdfasdf</td>
-								<td>sdfasdf</td>
-							</tr><tr>
-								<td style="width: 40%;">sdfasdf</td>
-								<td>sdfasdf</td>
-							</tr>
-							<tr>
-								<td style="width: 40%;">sdfasdf</td>
-								<td>sdfasdf</td>
-							</tr>
-							<tr>
-								<td style="width: 40%;">sdfasdf</td>
-								<td>sdfasdf</td>
-							</tr><tr>
-								<td style="width: 40%;">sdfasdf</td>
-								<td>sdfasdf</td>
-							</tr>
-							<tr>
-								<td style="width: 40%;">sdfasdf</td>
-								<td>sdfasdf</td>
-							</tr>
-							<tr>
-								<td style="width: 40%;">sdfasdf</td>
-								<td>sdfasdf</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
+				<div class="row">
+					<div class="content_table row">
+						<div class="col-12">
+							<label class="title"><strong>Company filings</strong></label>
+							<table id="filings" class="table table-bordered table-sm" cellspacing="0">
+								<thead>
+									<tr>
+										<th class="th-sm">Document Name</th>
+										<th class="th-sm">Filing Date</th>
+									</tr>
+								</thead>
+								<tbody>
+									{% for item in result_filings %}
+									<tr>
+										<td>{{ item['document_name'] }}</td>
+										<td>{{ item['filing_date'] }}</td>
+									</tr>
+									{% endfor %}
 
-				<div class="content_table row">
-					<label class="title"><strong>Company filings</strong></label>
-					<table id="filings" class="table table-bordered table-sm" cellspacing="0">
-						<thead>
-							<tr>
-								<th class="th-sm">Document Name</th>
-								<th class="th-sm">Filing Date</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td style="width: 40%;">sdfasdf</td>
-								<td>sdfasdf</td>
-							</tr>
-							<tr>
-								<td style="width: 40%;">sdfasdf</td>
-								<td>sdfasdf</td>
-							</tr>
-							<tr>
-								<td style="width: 40%;">sdfasdf</td>
-								<td>sdfasdf</td>
-							</tr>
-							<tr>
-								<td style="width: 40%;">sdfasdf</td>
-								<td>sdfasdf</td>
-							</tr>
-							<tr>
-								<td style="width: 40%;">sdfasdf</td>
-								<td>sdfasdf</td>
-							</tr>
-							<tr>
-								<td style="width: 40%;">sdfasdf</td>
-								<td>sdfasdf</td>
-							</tr><tr>
-								<td style="width: 40%;">sdfasdf</td>
-								<td>sdfasdf</td>
-							</tr>
-							<tr>
-								<td style="width: 40%;">sdfasdf</td>
-								<td>sdfasdf</td>
-							</tr>
-							<tr>
-								<td style="width: 40%;">sdfasdf</td>
-								<td>sdfasdf</td>
-							</tr><tr>
-								<td style="width: 40%;">sdfasdf</td>
-								<td>sdfasdf</td>
-							</tr>
-							<tr>
-								<td style="width: 40%;">sdfasdf</td>
-								<td>sdfasdf</td>
-							</tr>
-							<tr>
-								<td style="width: 40%;">sdfasdf</td>
-								<td>sdfasdf</td>
-							</tr><tr>
-								<td style="width: 40%;">sdfasdf</td>
-								<td>sdfasdf</td>
-							</tr>
-							<tr>
-								<td style="width: 40%;">sdfasdf</td>
-								<td>sdfasdf</td>
-							</tr>
-							<tr>
-								<td style="width: 40%;">sdfasdf</td>
-								<td>sdfasdf</td>
-							</tr><tr>
-								<td style="width: 40%;">sdfasdf</td>
-								<td>sdfasdf</td>
-							</tr>
-							<tr>
-								<td style="width: 40%;">sdfasdf</td>
-								<td>sdfasdf</td>
-							</tr>
-							<tr>
-								<td style="width: 40%;">sdfasdf</td>
-								<td>sdfasdf</td>
-							</tr><tr>
-								<td style="width: 40%;">sdfasdf</td>
-								<td>sdfasdf</td>
-							</tr>
-							<tr>
-								<td style="width: 40%;">sdfasdf</td>
-								<td>sdfasdf</td>
-							</tr>
-							<tr>
-								<td style="width: 40%;">sdfasdf</td>
-								<td>sdfasdf</td>
-							</tr>
-
-						</tbody>
-					</table>
+								</tbody>
+							</table>
+						</div>
+					</div>
 				</div>
 
 			</div>
-			<div class="col-4">
+
+			<div class="col-12 col-xl-4">
+							
 				<label class="title"><strong>Indicators</strong></label>
 				<div class="row justify-content-around">
-					<div class="indicator col-5">
-						<div style="display: inline-block;">
-							Active Status :
-							<p>{{}}</p>
+					<div class="col-6">
+						<div class="indicator row">
+							<div class="col">
+								Active Status :
+								<br>
+								{{ result_basic['active_status'] }}
+							</div>
+							<div class="mt-auto mb-auto">
+								<i class="fas fa-check ok custom"></i>
+							</div>
 						</div>
-
-						<span><i class="fas fa-check ok custom"></i></span>
-						
 					</div>
 
-					<div class="indicator col-5">
-						<div style="display: inline-block;">
-							Winding Up Mode :
-							<p>{{}}</p>
+					<div class="col-6">
+						<div class="indicator row">
+							<div class="col">
+								Winding Up Mode :
+								<br>
+								{{ result_basic['windingup_mode'] }}
+							</div>
+							<div class="mt-auto mb-auto">
+								<i class="fas fa-check ok custom"></i>
+							</div>
 						</div>
-
-						<span><i class="fas fa-check ok custom"></i></span>
-						
 					</div>
 
-					<div class="indicator col-5">
-						<div style="display: inline-block;">
-							Remarks :
-							<p>{{}}</p>
+					<div class="col-6">
+						<div class="indicator row">
+							<div class="col">
+								Remarks :
+								<br>
+								{{ result_basic['remarks'] }}
+							</div>
+							<div class="mt-auto mb-auto">
+								<i class="fas fa-check ok custom"></i>
+							</div>
 						</div>
-
-						<span><i class="fas fa-check ok custom"></i></span>
-						
 					</div>
 
-					<div class="indicator col-5">
-						<div style="display: inline-block;">
-							Register of Charges :
-							<p>{{}}</p>
+					<div class="col-6">
+						<div class="indicator row">
+							<div class="col">
+								Register of Charges :
+								<br>
+								{{ result_basic['register_of_charges'] }}
+							</div>
+							<div class="mt-auto mb-auto">
+								<i class="fas fa-check ok custom"></i>
+							</div>
 						</div>
-
-						<span><i class="fas fa-check ok custom"></i></span>
-						
 					</div>
 
-					<div class="indicator col-5">
-						<div style="display: inline-block;">
-							Active Status
-							<p>{{}}</p>
+					<div class="col-6">
+						<div class="indicator row">
+							<div class="col">
+								Important Note :
+								<br>
+								{{ result_basic['important_note'] }}
+							</div>
+							<div class="mt-auto mb-auto">
+								<i class="fas fa-check ok custom"></i>
+							</div>
 						</div>
-
-						<span><i class="fas fa-check ok custom"></i></span>
-						
-					</div>
-
-					<div class="indicator col-5">
-						<div style="display: inline-block;">
-							
-						</div>
-						
-					</div>				
+					</div>			
 					
+				</div>
+				<form role="form">					
+					<input id="cr_no" type="hidden" name="cr_no" value="{{ cr_no }}">
+				</form>
+
+				<div id="intermediate_result" class="row">
+					{% if error %}
+                        <p class="error"><strong>Warning: </strong> {{ error }}
+                    
+                    {% else %}
+
+                    <div class="col-12" style="padding: 1rem;">
+                    	<label class="title"><strong>Registered office address</strong></label>
+						<textarea id="address" disabled style="width: 100%;"></textarea>	
+                    </div>
+
+                    <div class="col-12" style="padding: 1rem;">
+                    	<label class="title"><strong>Share Capital</strong></label>
+						<input type="text" id="capital" disabled style="width: 100%;">	
+                    </div>
+
+                    <div class="col-12" style="padding: 1rem;">
+                    	<label class="title"><strong>List of Directors</strong></label>
+                    	<table id="directors" class="table table-bordered table-sm"></table>
+                    </div>
+					
+					<div class="col-12" style="padding: 1rem;">
+						<label class="title"><strong>Particulars of Company Secretary</strong></label>
+						<textarea type="text" id="secretary" disabled style="width: 100%;"></textarea>
+					</div>
+					
+					<div class="col-12" style="padding: 1rem;">
+						<label class="title"><strong>Particulars of receiver and manager</strong></label>
+						<textarea type="text" id="receiver" disabled style="width: 100%;"></textarea>
+					</div>
+
+					<div class="col-12" style="padding: 1rem;">
+						<label class="title"><strong>Particulars of Liquidator</strong></label>
+						<textarea type="text" id="liquidator" disabled style="width: 100%;"></textarea>
+					</div>
+
+					{% endif %}
 				</div>
 
 				<div class="row" style="float: right; margin-top: 40px; margin-right: 15px;">
@@ -357,7 +252,7 @@
 					<button class="btn_next">Next</button>
 				</div>
 
-				<form id="back_form" action="/search" method="post">
+				<form id="back_form" action="/search" method="POST">
 					<input type="hidden" name="company_name" value="{{ search_word }}">
 				</form>
 
@@ -395,75 +290,8 @@
 			</div>
 		</div>
 
-		<p>Legal Privacy Notice Cookie Policy Accessibility 2020 AMP Credit Technologies</p>
+		<p>Legal Privacy Notice Cookie Policy Accessibility</p>
 	</div>
 
-	<script type="text/javascript">
-
-		$(document).ready(function(){
-			$('#basicInfo').DataTable({
-				
-				"searching": false,
-				'autoWidth' : true,
-				'scrollY' : "10vh"
-			});
-
-			// $('.dataTables_length').addClass('bs-select');
-		});
-
-		$(document).ready(function(){
-			$('#history').DataTable({
-				
-				"searching": false,
-				'autoWidth' : true,
-				'scrollY' : "10vh"
-			});
-
-			// $('.dataTables_length').addClass('bs-select');
-		});
-
-		$(document).ready(function(){
-			$('#filings').DataTable({
-				
-				"searching": false,
-				'autoWidth' : true,
-				'scrollY' : "10vh"
-			});
-
-			// $('.dataTables_length').addClass('bs-select');
-			let confirm_height = window.innerHeight - 248;
-			$('#confirm').css({"height":confirm_height+"px"})
-
-			$('.btn_back').on('click', function(){
-				
-				$("#back_form").submit();
-			});
-
-			$('.btn_next').on('click', function(){
-				$('#confirm').show();
-			});
-
-			$('.yes').on('click', function(){
-				$('#btn_basic').removeClass('btn-primary');
-				$('#btn_basic').addClass('btn-success');
-				$('#btn_basic').val('Complete');
-
-				$('#btn_intermediate').removeClass('btn-secondary');
-				$('#btn_intermediate').addClass('btn-primary');
-				$('#btn_intermediate').val('In Progress');
-
-				$('#confirm').hide();
-			});
-			$('.no').on('click', function(){
-				$('#confirm').hide();
-			});
-
-			$('#btn_intermediate').on('click', function(){
-				$('#confirm').show();
-			});
-
-
-		});
-	</script>
 </body>
 </html>

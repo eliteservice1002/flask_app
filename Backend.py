@@ -116,31 +116,14 @@ print(dd)
 print(len(bb))
 CR_no = bb[0].split(": ")[1]
 company_name = bb[1].split(": ")[1]
-if ":" in bb[2]:
-    company_type = bb[2].split(": ")[1]
-    date_of_incorporation = bb[3].split(": ")[1]
-    active_status = bb[4].split(": ")[1]
-    remarks = bb[5].split("'")[0].split(": ")[1]
-    windingup_mode = bb[6].split("'")[0].split(": ")[1]
-    register_of_charges = bb[9].split(": ")[1]
-    important_note = bb[10].split(": ")[1]
-    
-else:
-    company_type = bb[3].split(": ")[1]
-    date_of_incorporation = bb[4].split(": ")[1]
-    active_status = bb[5].split(": ")[1]
-    remarks = bb[7].split("'")[0].split(": ")[1]
-    windingup_mode = bb[8].split("'")[0].split(": ")[1]
-    register_of_charges = bb[11].split(": ")[1]
-    important_note = bb[12].split(": ")[1]
+company_type = bb[2].split(": ")[1]
+date_of_incorporation = bb[3].split(": ")[1]
+active_status = bb[4].split(": ")[1]
 
-history = driver.find_elements_by_tag_name('table')[4].text
-# print(history)
-
-row = history.split('\n')
-for i in range(1,len(row)):
-    print(row[i].split(' ')[0])
-    print(listToString(row[i].split(' ')[1:]))
+remarks = bb[5].split("'")[0].split(": ")[1]
+windingup_mode = bb[6].split("'")[0].split(": ")[1]
+register_of_charges = bb[9].split(": ")[1]
+important_note = bb[10].split(": ")[1]
 
 btnGo = driver.find_elements_by_name('Button')[0]
 btnGo.click()
@@ -153,55 +136,34 @@ filing_year.click()
 driver.find_elements_by_tag_name('option')[9].click()
 driver.find_elements_by_tag_name('input')[5].click()
 
-def get_list():
-    document_name = []
-    filing_date = []
-    
-    rows = driver.find_elements_by_tag_name('tr')
-    contents = rows[12:22]
-    # print(rows[13].text)
-
-    for i in range(12,22):
-        tmp = rows[i].text
-        document_name.append(tmp.split('\n')[1])
-        filing_date.append(tmp.split('\n')[2].split(' ')[1])
-    
-    return(document_name, filing_date)
-
-
-# print(driver.find_elements_by_tag_name('table')[7].text)
-print(get_list())
+print(driver.find_elements_by_tag_name('table')[7].text)
 driver.find_elements_by_tag_name('input')[27].click()
 
-print(get_list())
+print(driver.find_elements_by_tag_name('table')[7].text)
 tempText = driver.find_elements_by_tag_name('input')[28].get_attribute('value')
-# print('-------------------------', tempText)
+print('-------------------------', tempText)
 
 while tempText.split(' ')[0] == 'Next':
     driver.find_elements_by_tag_name('input')[28].click()
-    print(get_list())
+    print(driver.find_elements_by_tag_name('table')[7].text)
     tempText = driver.find_elements_by_tag_name('input')[28].get_attribute('value')
     
 print('Finish')
 
 
-
 #  company particulars
-
 menu_search = driver.find_element_by_id('mi_0_0')
 menu_search.click()
 company_particulars = driver.find_element_by_id('mi_0_3')
 company_particulars.click()
 
 
-# radioBtn = driver.find_elements_by_name('radioButton')[0]
-# radioBtn = driver.find_elements_by_name('radioButton')[1]
-# radioBtn.click()
+radioBtn1 = driver.find_elements_by_name('radioButton')[0]
+radioBtn1.click()
+# radioBtn2 = driver.find_elements_by_name('radioButton')[1]
+# radioBtn2.click()
 
-cr_no = driver.find_elements_by_name('CRNo')[0]
-cr_no.send_keys('1196976')
-
-# company_name = driver.find_elements_by_name('companyName')[0]
-# company_name.send_keys('COCA-COLA BEVERAGES HOLDINGS COMPANY LIMITED')
+company_name = driver.find_elements_by_name('companyName')[0]
+company_name.send_keys('COCA-COLA BEVERAGES HOLDINGS COMPANY LIMITED')
 btnSearch = driver.find_elements_by_tag_name('input')[12]
 btnSearch.click()
